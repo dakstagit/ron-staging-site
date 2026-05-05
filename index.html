@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ron Ingber | Personal Injury Law</title>
+  <meta name="description" content="Premium legal services for high-stakes litigation and personal injury cases in New York." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-red: #6a0000;
+      --brand-red-light: #950000;
+      --brand-black: #1b1c1c;
+      --brand-bg: #fbf9f8;
+      --white: #ffffff;
+      --zinc-50: #fafafa;
+      --zinc-100: #f4f4f5;
+      --zinc-200: #e4e4e7;
+      --zinc-300: #d4d4d8;
+      --zinc-400: #a1a1aa;
+      --zinc-500: #71717a;
+      --zinc-600: #52525b;
+      --zinc-900: #18181b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Montserrat", Arial, sans-serif;
+      background: var(--brand-bg);
+      color: var(--brand-black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button, input, textarea { font-family: inherit; }
+    button { cursor: pointer; border: 0; }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .luxury-line {
+      height: 2px;
+      width: 80px;
+      background: var(--brand-red-light);
+    }
+
+    .section-padding {
+      padding: 128px 0;
+    }
+
+    .text-display {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      line-height: 0.9;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      width: 100%;
+      padding: 24px 0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: #fff;
+      padding: 12px 0;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .navbar.scrolled .brand { color: var(--brand-red); }
+
+    .brand svg {
+      width: 32px;
+      height: 32px;
+      stroke: currentColor;
+    }
+
+    .desktop-menu {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .desktop-menu a {
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      transition: color 0.2s ease;
+    }
+
+    .navbar.scrolled .desktop-menu a { color: var(--brand-black); }
+    .desktop-menu a:hover { color: var(--brand-red-light); }
+
+    .btn-red {
+      background: var(--brand-red-light);
+      color: #fff;
+      padding: 14px 24px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .btn-red:hover { background: var(--brand-red); }
+    .btn-red:active { transform: scale(0.98); }
+
+    .mobile-toggle {
+      display: none;
+      background: transparent;
+      color: #fff;
+    }
+
+    .navbar.scrolled .mobile-toggle { color: var(--brand-black); }
+
+    .mobile-menu {
+      display: none;
+      background: #fff;
+      border-top: 1px solid var(--zinc-100);
+      padding: 24px;
+    }
+
+    .mobile-menu.open { display: block; }
+
+    .mobile-menu a {
+      display: block;
+      padding: 10px 0;
+      color: var(--brand-black);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 700px;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--brand-black);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+      filter: grayscale(0.5);
+      transform: scale(1.05);
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--brand-black), rgba(27,28,28,0.4), transparent);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-copy {
+      color: #fff;
+      animation: slideLeft 0.8s ease forwards;
+    }
+
+    .hero-copy h1 { margin-top: 16px; }
+    .hero-copy h1 span {
+      color: var(--brand-red-light);
+      font-style: italic;
+    }
+
+    .hero-copy p {
+      max-width: 540px;
+      margin-top: 32px;
+      color: rgba(255,255,255,0.7);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 32px;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.03);
+      color: #fff;
+      padding: 20px 40px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+
+    .btn-outline:hover {
+      background: #fff;
+      color: var(--brand-black);
+    }
+
+    .quote-block {
+      display: block;
+      border-left: 8px solid var(--brand-red-light);
+      padding: 48px 0 48px 40px;
+      color: #fff;
+      animation: slideRight 0.8s ease 0.2s both;
+    }
+
+    .quote-block p:first-child {
+      font-size: 40px;
+      line-height: 1.2;
+      font-weight: 800;
+      font-style: italic;
+    }
+
+    .quote-block p:last-child {
+      margin-top: 24px;
+      color: var(--brand-red-light);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 1.5s infinite;
+    }
+
+    .scroll-indicator div {
+      position: relative;
+      width: 4px;
+      height: 48px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .scroll-indicator div::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: #fff;
+      border-radius: 999px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about { background: #fff; overflow: hidden; }
+    .profile-wrap { position: relative; }
+    .profile-border {
+      border: 15px solid var(--zinc-100);
+      padding: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile-border img {
+      width: 100%;
+      display: block;
+      filter: grayscale(1);
+      transition: filter 0.7s ease;
+    }
+
+    .profile-border img:hover { filter: grayscale(0); }
+
+    .experience-badge {
+      position: absolute;
+      right: -32px;
+      bottom: -40px;
+      z-index: 3;
+      background: var(--brand-red-light);
+      color: #fff;
+      padding: 40px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    }
+
+    .experience-badge strong {
+      display: block;
+      font-size: 60px;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 1;
+    }
+
+    .experience-badge span {
+      display: block;
+      margin-top: 8px;
+      opacity: 0.8;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+    }
+
+    .blob {
+      position: absolute;
+      top: -40px;
+      left: -40px;
+      width: 160px;
+      height: 160px;
+      background: var(--zinc-50);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      color: var(--brand-red-light);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+    }
+
+    .section-title {
+      margin-top: 16px;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .section-title span { color: var(--zinc-400); }
+
+    .about-copy .luxury-line { margin: 32px 0; }
+
+    .body-large {
+      color: var(--zinc-600);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.8;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--zinc-100);
+    }
+
+    .stats strong {
+      display: block;
+      color: var(--brand-red);
+      font-size: 40px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -0.05em;
+    }
+
+    .stats span {
+      color: var(--zinc-500);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .services { background: var(--zinc-50); }
+    .text-center { text-align: center; }
+    .text-center .luxury-line { margin: 20px auto 0; }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 80px;
+      background: #fff;
+      border: 1px solid var(--zinc-200);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .service-card {
+      padding: 64px;
+      border-right: 1px solid var(--zinc-100);
+      transition: all 0.5s ease;
+    }
+
+    .service-card:last-child { border-right: 0; }
+    .service-card:hover { background: var(--zinc-900); }
+
+    .service-card svg {
+      width: 40px;
+      height: 40px;
+      color: var(--brand-red-light);
+      margin-bottom: 32px;
+      transition: color 0.3s ease;
+    }
+
+    .service-card h3 {
+      color: var(--brand-black);
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      transition: color 0.3s ease;
+    }
+
+    .service-card p {
+      margin-top: 32px;
+      color: var(--zinc-500);
+      line-height: 1.7;
+      transition: color 0.3s ease;
+    }
+
+    .service-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+      color: var(--brand-red-light);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover svg,
+    .service-card:hover h3,
+    .service-card:hover a { color: #fff; }
+
+    .service-card:hover p { color: var(--zinc-400); }
+    .service-card:hover a { gap: 20px; }
+
+    .contact { background: #fff; }
+    .contact-info { margin-top: 48px; display: grid; gap: 40px; }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .contact-icon {
+      background: var(--zinc-100);
+      padding: 16px;
+      border-radius: 999px;
+      color: var(--brand-red);
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg { width: 24px; height: 24px; }
+
+    .contact-item small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--zinc-400);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .contact-item p {
+      color: var(--brand-black);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .map-box {
+      height: 256px;
+      margin-top: 48px;
+      overflow: hidden;
+      border: 2px solid var(--zinc-100);
+      border-radius: 16px;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+      opacity: 0.6;
+      filter: grayscale(1);
+      transition: all 0.3s ease;
+    }
+
+    .map-box:hover { opacity: 1; }
+    .map-box img { width: 100%; height: 100%; object-fit: cover; }
+
+    .form-box {
+      position: relative;
+      background: var(--brand-black);
+      padding: 64px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    .form-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 96px;
+      height: 96px;
+      background: rgba(149,0,0,0.1);
+    }
+
+    .form-box h3 {
+      color: #fff;
+      font-size: 40px;
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .form-group { margin-bottom: 24px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--zinc-500);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      padding: 16px 24px;
+      outline: none;
+      font-size: 15px;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--brand-red-light); }
+
+    .form-group textarea { resize: none; }
+
+    .full-btn {
+      width: 100%;
+      padding: 24px;
+      background: var(--brand-red-light);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      transition: all 0.2s ease;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+    }
+
+    .full-btn:hover { background: var(--brand-red); }
+    .full-btn:active { transform: scale(0.98); }
+
+    .footer {
+      padding: 80px 0;
+      background: var(--zinc-50);
+      border-top: 1px solid var(--zinc-200);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--brand-black);
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .footer-brand svg {
+      width: 24px;
+      height: 24px;
+      color: var(--brand-red);
+    }
+
+    .copyright {
+      margin-top: 16px;
+      color: var(--zinc-400);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .footer-links a {
+      color: var(--zinc-600);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--brand-red); }
+
+    .badges {
+      display: flex;
+      gap: 16px;
+      opacity: 0.3;
+      filter: grayscale(1);
+      transition: all 0.5s ease;
+    }
+
+    .badges:hover {
+      opacity: 1;
+      filter: grayscale(0);
+    }
+
+    .badge {
+      border: 1px solid var(--zinc-300);
+      padding: 12px 24px;
+      text-align: center;
+    }
+
+    .badge strong {
+      display: block;
+      font-size: 10px;
+      font-weight: 900;
+      font-style: italic;
+    }
+
+    .badge span {
+      display: block;
+      margin-top: 3px;
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+    }
+
+    @keyframes slideLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -10px); }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-block { display: none; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-card {
+        border-right: 0;
+        border-bottom: 1px solid var(--zinc-100);
+      }
+      .service-card:last-child { border-bottom: 0; }
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-brand { justify-content: center; }
+    }
+
+    @media (max-width: 768px) {
+      .section-padding { padding: 80px 0; }
+      .desktop-menu { display: none; }
+      .mobile-toggle { display: block; }
+      .hero {
+        min-height: 720px;
+      }
+      .text-display {
+        font-size: 48px;
+      }
+      .hero-copy p {
+        font-size: 16px;
+      }
+      .btn-red,
+      .btn-outline {
+        width: 100%;
+        text-align: center;
+        padding: 18px 22px;
+      }
+      .experience-badge {
+        right: -8px;
+        padding: 24px;
+      }
+      .experience-badge strong {
+        font-size: 44px;
+      }
+      .stats,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .service-card,
+      .form-box {
+        padding: 40px 24px;
+      }
+      .contact-item p {
+        font-size: 20px;
+      }
+      .badges {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m14 13-7.5 7.5c-.83.83-2.17.83-3 0s-.83-2.17 0-3L11 10"></path>
+          <path d="m16 16 6-6"></path>
+          <path d="m8 8 6-6"></path>
+          <path d="m9 7 8 8"></path>
+          <path d="m21 11-8-8"></path>
+        </svg>
+        <span>Ron Ingber</span>
+      </a>
+
+      <div class="desktop-menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn-red">Free Consultation</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open Menu">
+        <svg id="menuIcon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEPn0CCN_B6MwJ4zuoTwI8rk3077XUFyTZgMxkxjACpaQZ9Mc8wmloH8cOZglIDAQ5gJhTht2Oinx0KrVTbR7yLZ5XYX0B_2I4J5OjvDCJ639cH2nD7lwfMwHnM8O243G3fjtAH7kVMAthlDz7VkV6aX8uoWzRWoHBZI3BUq_Rcu0-2A4XPIGPB4f-iHWnbX8LvJVxE6ZgH6AiRQ-2tO4jbJ4O7RGeeeCCHKVLBhFYlXgQfaLvq071DwKLqq5u4_4wOkpTL4r_psM" alt="Law Library" referrerpolicy="no-referrer">
+    </div>
+
+    <div class="container hero-content">
+      <div class="hero-copy">
+        <div class="luxury-line"></div>
+        <h1 class="text-display">
+          In Pursuit of <br>
+          <span>Justice</span> <br>
+          for the Injured.
+        </h1>
+        <p>
+          With over three decades of high-stakes litigation experience, Ron Ingber provides the steady hand and authoritative counsel required for New York's most complex personal injury cases.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-red">Schedule Free Consultation</a>
+          <a href="#about" class="btn-outline">Our Story</a>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <p>"We don't just practice law; <br> we protect your future."</p>
+        <p>— Ron Ingber, Managing Partner</p>
+      </div>
+    </div>
+
+    <div class="scroll-indicator"><div></div></div>
+  </section>
+
+  <section id="about" class="about section-padding">
+    <div class="container grid-2">
+      <div class="profile-wrap fade-up">
+        <div class="blob"></div>
+        <div class="profile-border">
+          <img src="https://www.nylawnet.com/wp-content/uploads/2021/09/team-1-768x768.png" alt="Ron Ingber" referrerpolicy="no-referrer">
+        </div>
+        <div class="experience-badge">
+          <strong>30+</strong>
+          <span>Years of Expertise</span>
+        </div>
+      </div>
+
+      <div class="about-copy fade-up">
+        <p class="eyebrow">Managing Partner</p>
+        <h2 class="section-title">
+          Ron Ingber, <br>
+          <span>The Power of Experience.</span>
+        </h2>
+        <div class="luxury-line"></div>
+        <p class="body-large">
+          As the Managing Partner at Siler & Ingber LLP, Ron Ingber has dedicated his career to representing individuals who have suffered life-altering injuries. His approach combines surgical precision in the courtroom with compassionate understanding for his clients' recovery.
+        </p>
+
+        <div class="stats">
+          <div>
+            <strong>$100M+</strong>
+            <span>Total Recovered</span>
+          </div>
+          <div>
+            <strong>5,000+</strong>
+            <span>Clients Represented</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="services section-padding">
+    <div class="container">
+      <div class="text-center fade-up">
+        <p class="eyebrow">Our Expertise</p>
+        <h2 class="section-title">Specialized Practice</h2>
+        <div class="luxury-line"></div>
+      </div>
+
+      <div class="service-grid">
+        <div class="service-card fade-up">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18.4 10c-.3-.1-.5-.3-.7-.6l-1.2-2.5C16.2 6.3 15.6 6 15 6H9c-.6 0-1.2.3-1.5.9L6.3 9.4c-.1.3-.4.5-.7.6l-2.1 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"></path>
+            <circle cx="7" cy="17" r="2"></circle>
+            <path d="M9 17h6"></path>
+            <circle cx="17" cy="17" r="2"></circle>
+          </svg>
+          <h3>Motor Vehicle Accidents</h3>
+          <p>Aggressive representation for car, truck, and motorcycle accidents resulting in catastrophic injury or loss.</p>
+          <a href="#contact">Learn More →</a>
+        </div>
+
+        <div class="service-card fade-up">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 2v2"></path>
+            <path d="M5 2v2"></path>
+            <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"></path>
+            <path d="M8 15a6 6 0 0 0 12 0v-3"></path>
+            <circle cx="20" cy="10" r="2"></circle>
+          </svg>
+          <h3>Medical Malpractice</h3>
+          <p>Holding medical professionals and institutions accountable for negligence and life-altering errors.</p>
+          <a href="#contact">Learn More →</a>
+        </div>
+
+        <div class="service-card fade-up">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2"></path>
+            <path d="M5 18V9a7 7 0 0 1 14 0v9"></path>
+            <path d="M9 9v9"></path>
+            <path d="M15 9v9"></path>
+          </svg>
+          <h3>Workplace Injuries</h3>
+          <p>Expert advocacy for workers' compensation and third-party liability in construction and industrial settings.</p>
+          <a href="#contact">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact section-padding">
+    <div class="container grid-2">
+      <div class="fade-up">
+        <p class="eyebrow">Direct Access</p>
+        <h2 class="section-title">Office <br> Headquarters</h2>
+        <div class="luxury-line" style="margin-top: 24px;"></div>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div>
+              <small>Office Location</small>
+              <p>301 Mineola Blvd, <br> Mineola, NY 11501</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.9.32 1.77.57 2.61a2 2 0 0 1-.45 2.11L9 10.56a16 16 0 0 0 4.44 4.44l1.12-1.12a2 2 0 0 1 2.11-.45c.84.25 1.71.45 2.61.57A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
+            <div>
+              <small>Direct Line</small>
+              <p>(516) 294-2666</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
+            </div>
+            <div>
+              <small>Legal Correspondence</small>
+              <p>ringber@nylawnet.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMM4tpQg8WRvuruEE4U6E8wDdGZD2M8JWKq-T06PSd-NzO0eUhdx-wam-QI0l2i9B0-JB4WYig0u2evtCcQbsTOzh3EgNWQ3eXKXQU9iO_MRywYgl-6rUKD8yVVam376cgbXqhzyh3zN4ve7RFrZWHY9jaOJPMG5ktYMRIeY8Y4vS4hpPu3phNeh2FR2K3BfxuzSwZ4i9a75Szh04lbmHgG7hioStFULekFJpoVqr-B0ncQnjAEJ9H8QmWKXTSsKP_OE-9DcUzDWQ" alt="Office Map" referrerpolicy="no-referrer">
+        </div>
+      </div>
+
+      <div class="form-box fade-up">
+        <h3>Secure Your Free <br> Consultation</h3>
+
+        <form id="consultationForm">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your name">
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="email@example.com">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" placeholder="(555) 000-0000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Case Description</label>
+            <textarea rows="4" placeholder="Briefly describe your legal needs"></textarea>
+          </div>
+
+          <button type="submit" class="full-btn">Send Request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m14 13-7.5 7.5c-.83.83-2.17.83-3 0s-.83-2.17 0-3L11 10"></path><path d="m16 16 6-6"></path><path d="m8 8 6-6"></path><path d="m9 7 8 8"></path><path d="m21 11-8-8"></path></svg>
+          <span>Ron Ingber</span>
+        </div>
+        <p class="copyright">© 2026 Ron Ingber. All Rights Reserved.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="https://www.nylawnet.com/">Main Website</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="badges">
+        <div class="badge">
+          <strong>TOP 100</strong>
+          <span>Trial Lawyers</span>
+        </div>
+        <div class="badge">
+          <strong>AV PREEMINENT</strong>
+          <span>Martindale-Hubbell</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById("navbar");
+    const mobileToggle = document.getElementById("mobileToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const menuIcon = document.getElementById("menuIcon");
+
+    function setMenuIcon(open) {
+      menuIcon.innerHTML = open
+        ? '<line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line>'
+        : '<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>';
+    }
+
+    window.addEventListener("scroll", () => {
+      navbar.classList.toggle("scrolled", window.scrollY > 20);
+    });
+
+    mobileToggle.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      setMenuIcon(isOpen);
+    });
+
+    document.querySelectorAll(".mobile-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        setMenuIcon(false);
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+    document.getElementById("consultationForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Thank you. Your request has been received.");
+    });
+  </script>
+</body>
+</html>
